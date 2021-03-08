@@ -8,18 +8,171 @@
     <style>
       @import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css);
       @import url(https://fonts.googleapis.com/css?family=Comfortaa);
-      
+       body {
+        font-family: "Comfortaa", cursive;
+        background: #353535;
+        color: #fff;
+      }
+      .jumbotron h1 {
+        color: #353535;
+      }  
+      footer {
+        margin-bottom: 0 !important;
+        margin-top: 80px;
+      }
+
+      h2 {
+        color: #bdc3c7;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      a.animated-button:link,
+      a.animated-button:visited {
+        position: relative;
+        display: block;
+        margin: 30px auto 0;
+        padding: 14px 15px;
+        color: #fff;
+        font-size: 14px;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none;
+        text-transform: uppercase;
+        overflow: hidden;
+        letter-spacing: 0.08em;
+        border-radius: 0;
+        text-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.2);
+        -webkit-transition: all 1s ease;
+        -moz-transition: all 1s ease;
+        -o-transition: all 1s ease;
+        transition: all 1s ease;
+      }
+      a.animated-button:link:after,
+      a.animated-button:visited:after {
+        content: "";
+        position: absolute;
+        height: 0%;
+        left: 50%;
+        top: 50%;
+        width: 150%;
+        z-index: -1;
+        -webkit-transition: all 0.75s ease 0s;
+        -moz-transition: all 0.75s ease 0s;
+        -o-transition: all 0.75s ease 0s;
+        transition: all 0.75s ease 0s;
+      }
+      a.animated-button:link:hover,
+      a.animated-button:visited:hover {
+        color: #fff;
+        text-shadow: none;
+      }
+      a.animated-button:link:hover:after,
+      a.animated-button:visited:hover:after {
+        height: 450%;
+      }
+      a.animated-button:link,
+      a.animated-button:visited {
+        position: relative;
+        display: block;
+        margin: 30px auto 0;
+        padding: 14px 15px;
+        color: #fff;
+        font-size: 14px;
+        border-radius: 0;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none;
+        text-transform: uppercase;
+        overflow: hidden;
+        letter-spacing: 0.08em;
+        text-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.2);
+        -webkit-transition: all 1s ease;
+        -moz-transition: all 1s ease;
+        -o-transition: all 1s ease;
+        transition: all 1s ease;
+      }
+
+      a.animated-button.victoria-one {
+        border: 2px solid #d24d57;
+      }
+      a.animated-button.victoria-one:after {
+        background: #d24d57;
+        -moz-transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+        -ms-transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+        -webkit-transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+        transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+      }
+      a.animated-button.victoria-two {
+        border: 2px solid #d24d57;
+      }
+      a.animated-button.victoria-two:after {
+        background: #d24d57;
+        -moz-transform: translateX(-50%) translateY(-50%) rotate(25deg);
+        -ms-transform: translateX(-50%) translateY(-50%) rotate(25deg);
+        -webkit-transform: translateX(-50%) translateY(-50%) rotate(25deg);
+        transform: translateX(-50%) translateY(-50%) rotate(25deg);
+      }
+
+
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0px 10px;
+      }
+      .navitems {
+        list-style: none;
+      }
+
+      .navbar a {
+        color: #d24d57;
+      }
+    </style>
     </style>
   </head>
   <body>
-    <button style="position: absolute; top: 2px; right: 10px; color: black">
-      <a href="/"> Home</a>
-    </button>
-    <div class="contain text-center">
-      <h1>Admin page</h1>
-      <div class="mt-4">
-      <button class="btn btn-lg mt-4"><a href="/addtodataset">Add To data set</a></button>
-      <button class="btn btn-lg mt-4" ><a href="/train">Train</a></button>
+    <nav>
+      <ul class="navbar">
+        <li class="navitems">
+          <a class="navbtn" href="/"><h3>ASST</h3></a>
+        </li>
+        <!-- <li class="navitems">
+          <a class="navbtn" href="/adminlogin"> <h3>Admin</h3></a>
+        </li> -->
+        <li class="navitems">
+          <a class="navbtn" href="/"> <h3>Home</h3></a>
+        </li>
+      </ul>
+    </nav>
+    <div class="jumbotron text-center">
+      <div class="container">
+        <h1>Admin</h1>
+        <!-- <button class="btn btn-secondary btn-lg"><a href="/admin">Admin</a></button> -->
+      </div>
+    </div>
+    <div class="container">
+      <div class="row text-center">
+        <h2>Click on Your Choice !</h2>
+        <div class="col-md-6 col-sm-6 col-xs-6">
+          <a class="btn btn-sm animated-button victoria-one" href="/addtodataset"
+            ><h3>Add to Dataset</h3></a
+          >
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-6">
+          <a class="btn btn-sm animated-button victoria-two" href="/train"
+            ><h3>Train the Dataset</h3></a
+          >
+        </div>
+        <div class=" col-md-6 col-sm-6 col-xs-6 ">
+          <a class="btn btn-sm animated-button victoria-two" href="/details"
+            ><h3>Resident Details</h3></a
+          >
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-6">
+          <a class="btn btn-sm animated-button victoria-two" href="/irrdetails"
+            ><h3>Irregular Details</h3></a
+          >
+        </div>
       </div>
     </div>
   </body>

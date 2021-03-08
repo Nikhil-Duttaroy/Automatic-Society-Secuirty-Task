@@ -114,7 +114,13 @@
         -webkit-transform: translateX(-50%) translateY(-50%) rotate(25deg);
         transform: translateX(-50%) translateY(-50%) rotate(25deg);
       }
-
+      th{
+        font-size: 2.5rem;
+      }
+      td{
+        font-size: 2rem;
+        font-weight: 1000;
+      }
       .navbar {
         display: flex;
         justify-content: space-between;
@@ -128,6 +134,20 @@
       .navbar a {
         color: #d24d57;
       }
+      tr:nth-child(even) {
+        background-color: #e0dddd;
+        color: black;
+      }
+      
+      .alert {
+        background-color: red;
+      }
+      .alert1 {
+        background-color: red;
+      }
+      /* td:nth-child(6){
+        color: red;
+      } */
     </style>
   </head>
   <body>
@@ -136,34 +156,59 @@
         <li class="navitems">
           <a class="navbtn" href="/"><h3>ASST</h3></a>
         </li>
-        <li class="navitems">
+        <!-- <li class="navitems">
           <a class="navbtn" href="/adminlogin"> <h3>Admin</h3></a>
-        </li>
+        </li> -->
         <li class="navitems">
           <a class="navbtn" href="/"> <h3>Home</h3></a>
         </li>
       </ul>
     </nav>
+    
     <div class="jumbotron text-center">
       <div class="container">
-        <h1>Pillai's Society</h1>
+        <h1>Irregular </h1>
         <!-- <button class="btn btn-secondary btn-lg"><a href="/admin">Admin</a></button> -->
       </div>
     </div>
     <div class="container">
       <div class="row text-center">
-        <h2>Click on Your Choice !</h2>
-        <div class="col-md-6 col-sm-6 col-xs-6">
-          <a class="btn btn-sm animated-button victoria-one" href="/recognize"
-            ><h3>Detect</h3></a
-          >
-        </div>
-        <div class="col-md-6 col-sm-6 col-xs-6">
-          <a class="btn btn-sm animated-button victoria-two" href="/irregular"
-            ><h3>Irregular Visitor</h3></a
-          >
-        </div>
+        <table border="1" style="border-collapse:collapse; width: 100%;border-bottom:2px solid ;">
+          <tr>
+            <th style="text-align: center;">ID</th>
+            <th style="text-align: center">Name</th>
+            <th style="text-align: center">Phone No.</th>
+            <th style="text-align: center">Visiting Flat</th>
+            <th style="text-align: center">Purpose</th>
+            <th style="text-align: center">Entry Time</th>
+            <th style="text-align: center">Exit Time</th>
+            <th style="text-align: center">Temperature</th>
+          </tr>
+          {% for item in irrdata %}
+          <tr class="irrrows">
+            <td>{{item[0]}}</td>
+            <td>{{item[1]}}</td>
+            <td>{{item[2]}}</td>
+            <td>{{item[3]}}</td>
+            <td>{{item[4]}}</td>
+            <td>{{item[5]}}</td>
+            <td>{{item[6]}}</td>
+            <td class="irrtemp">{{item[7]}}</td>
+          </tr>
+          {% endfor %}
+        </table>
       </div>
     </div>
   </body>
+  <script>
+    var irrtemp = document.querySelectorAll(".irrtemp");
+    irrtemp.forEach((data1) => {
+      if (data1.innerHTML >= 100) {
+        console.log(data1);
+        console.log(data1.innerHTML);
+        console.log(data1.parentElement);
+        data1.parentElement.style.backgroundColor="red"
+      }
+    });
+  </script>
 </html>

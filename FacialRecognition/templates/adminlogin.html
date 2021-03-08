@@ -1,26 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
-    />
-    <title>Irregular Form</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css"
     />
-    <style>   
+    <style>
       @import url(https://fonts.googleapis.com/css?family=Comfortaa);
-      @import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css);
 
       body {
         font-family: "Comfortaa", cursive;
         background: #353535;
         color: #fff;
       }
-       .navbar {
+      .navbar {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -35,13 +32,11 @@
       }
 
       input::-webkit-input-placeholder {
-    font-size: 1.23rem;
+        font-size: 1.23rem;
       }
     </style>
   </head>
-
   <body>
-    
     <nav>
       <ul class="navbar">
         <li class="navitems">
@@ -56,64 +51,45 @@
       </ul>
     </nav>
 
-    <div class="container mt-5 p-4" style="width: 50% ;border:2px #d24d57 solid ; border-radius: 15px;">
-      <h1 class="text-center">Form</h1>
+    <div
+      class="container mt-5 p-4"
+      style="width: 50%; border: 2px #d24d57 solid; border-radius: 15px"
+    >
+      <h1 class="text-center">Admin Login</h1>
       <form action="#" method="POST">
         <div class="form-group">
-          <label for="Name"><h4>Name:</h4></label>
+          <label for="Username"><h3>Username:</h3></label>
           <input
             type="text"
-            class="form-control p-3"
+            class="form-control p-4"
             id="Name"
             placeholder="Enter Name"
-            name="Name"
+            name="username"
             required
           />
         </div>
         <div class="form-group">
-          <label for="Phone No."><h4>Phone No:</h4></label>
+          <label for="Password"><h3>Password</h3></label>
           <input
-            type="tel"
-            class="form-control p-3"
+            type="password"
+            class="form-control p-4"
             id="pwd"
-            placeholder="Enter Phone No"
-            name="Phone"
-            required
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="Visitng To"><h4>Visitng To:</h4></label>
-          <input
-            type="text"
-            class="form-control p-3"
-            id="Visitng To"
-            placeholder="Enter Visitng To"
-            name="Visit"
-            required
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="Purpose"><h4>Purpose:</h4></label>
-          <input
-            type="text"
-            class="form-control p-3"
-            id="Purpose"
-            placeholder="Enter Purpose"
-            name="Purpose"
+            placeholder="Enter Password"
+            name="password"
             required
           />
         </div>
         <div class="text-center">
-        <button type="submit" class="btn btn-primary btn-lg text-center">
-          Submit
-        </button>
+          {% if message %}
+          <p style="color: red;">{{ message }}</p>
+          {% endif %}
+          <button type="submit" class="btn btn-primary btn-lg text-center">
+            Login
+          </button>
         </div>
       </form>
     </div>
 
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
   </body>

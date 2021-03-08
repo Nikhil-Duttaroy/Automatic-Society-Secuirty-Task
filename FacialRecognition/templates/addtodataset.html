@@ -6,40 +6,78 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
     />
-    <title>add</title>
+    <title>Add to Dataset</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css"
     />
-    <!-- <link rel="stylesheet" href="assets/css/Pretty-Registration-Form.css" />
-    <link rel="stylesheet" href="assets/css/styles.css" /> -->
+    <style>   
+      @import url(https://fonts.googleapis.com/css?family=Comfortaa);
+      @import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css);
+
+      body {
+        font-family: "Comfortaa", cursive;
+        background: #353535;
+        color: #fff;
+      }
+       .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0px 10px;
+      }
+      .navitems {
+        list-style: none;
+      }
+
+      .navbar a {
+        color: #d24d57;
+      }
+
+      input::-webkit-input-placeholder {
+    font-size: 1.23rem;
+      }
+    </style>
   </head>
 
   <body>
-    <div class="container" style="width: 50%">
-      <button style="position: absolute; top: 2px; right: 10px; color: black">
-        <a href="/"> Home</a>
-      </button>
-      <h2>Form</h2>
+
+<nav>
+      <ul class="navbar">
+        <li class="navitems">
+          <a class="navbtn" href="/"><h3>ASST</h3></a>
+        </li>
+        <li class="navitems">
+          <a class="navbtn" href="/adminlogin"> <h3>Admin</h3></a>
+        </li>
+        <li class="navitems">
+          <a class="navbtn" href="/"> <h3>Home</h3></a>
+        </li>
+      </ul>
+    </nav>
+<div class="container mt-5 p-4" style="width: 50% ;border:2px #d24d57 solid ; border-radius: 15px;">
+      <h1 class="text-center">Add User to Dataset</h1>
       <form action="#" method="POST">
         <div class="form-group">
-          <label for="Name">Name:</label>
+          <label for="Name"><h4>Name:</h4></label>
           <input
-            type="Name"
-            class="form-control"
+            type="text"
+            class="form-control p-3"
             id="Name"
             placeholder="Enter Name"
             name="Name"
+            required
           />
         </div>
         <div class="form-group">
-          <label for="Flat">Flat</label>
+          <label for="Flat"><h4>Flat</h4></label>
           <input
             type="text"
-            class="form-control"
+            class="form-control p-3"
             id="pwd"
             placeholder="Enter flat"
             name="Flat"
+            required
           />
         </div>
         <div class="form-check">
@@ -50,7 +88,7 @@
             id="flexRadioDefault1"
             value="Resident"
           />
-          <label class="form-check-label" for="flexRadioDefault1">
+          <label style="font-size: 1.5rem;"class="form-check-label ml-5" for="flexRadioDefault1">
             Resident
           </label>
         </div>
@@ -62,11 +100,13 @@
             id="flexRadioDefault1"
             value="Regular"
           />
-          <label class="form-check-label" for="flexRadioDefault2">
+          <label style="font-size: 1.5rem;" class="form-check-label ml-5" for="flexRadioDefault2">
             Regular
           </label>
         </div>
+        <div class="text-center">
         <button type="submit" class="btn btn-primary btn-lg mt-4">Submit</button>
+          </div>
       </form>
     </div>
 

@@ -48,20 +48,56 @@ def irregular():
        con.execute(cmd,(Name,Phone,Visit,Purpose))
        con.commit()
        con.close() 
-       irregular_dataset.data()
+       irregular_dataset.irrdata()
 
     return render_template("irregular.html") 
+
+
+@app.route('/adminlogin', methods=["Get","POST"])
+def adminlogin():
+    if request.method == "POST": 
+       message=""
+       Username= request.form.get("username")  
+       Password= request.form.get("password")  
+       if (Username=="admin" and Password=="1234"):
+           return render_template('admin.html')
+       else:
+           message="Incorrect Credentails"
+           return render_template('adminlogin.html',message=message)
+    return render_template('adminlogin.html')
 
 
 @app.route('/admin')
 def admin():
    return render_template('admin.html')
 
+@app.route('/details')
+def details():
+    conn=sqlite3.connect("FaceBase.db")
+    cmd="Select * from Users;"
+    cursor=conn.execute(cmd)
+    cursor.execute(cmd)
+    conn.commit()
+    data=cursor.fetchall()
+    return render_template("details.html",data=data)     
+    
+@app.route('/irrdetails')
+def irrdetails(): 
+    conn=sqlite3.connect("FaceBase.db")
+    cmd1="Select * from Irregular;"
+    cursor=conn.execute(cmd1)
+    cursor.execute(cmd1)
+    conn.commit()
+    irrdata=cursor.fetchall()
+    conn.close()
+    return render_template("irrdetails.html",irrdata=irrdata)
+
+
 @app.route('/train')
 def train():
     face_training.train()
     print("Training Done")
-    return render_template('index.html')
+    return render_template('admin.html')
 
 
 @app.route('/recognize')

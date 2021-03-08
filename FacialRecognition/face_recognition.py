@@ -58,10 +58,10 @@ def reco():
         
             profile=getProfile(id)
             if(profile!=None):
-                if (int(conf) < 100):
+                if (int(conf) < 67):
                     cv2.rectangle(im,(x,y),(x+w,y+h),(0,255,0),2)
                     conf = "  {0}%".format(round(100 - conf))
-                    # cv2.putText(im, str(conf), (x,y+h), font,1, (0,255,0), 2)
+                    cv2.putText(im, str(conf), (x,y+h), font,1, (0,255,0), 2)
                     cv2.putText(im,str(profile[1]), (x+2,y+h+30),font, 1, (0,255,0), 2)
                     cv2.putText(im,str(profile[4]), (x+2,y+h+60),font, 1, (0,255,0), 2)
                     inserttime(id)
