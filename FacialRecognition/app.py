@@ -1,9 +1,10 @@
-from flask import Flask, render_template,request
+from flask import Flask, render_template,request,redirect,url_for
 import face_recognition
 import face_training
 import face_dataset
 import irregular_dataset
 import sqlite3
+
 
     
 app = Flask(__name__)
@@ -31,6 +32,7 @@ def addtodataset():
        con.commit()
        con.close() 
        face_dataset.data()
+       return redirect(url_for('admin'))
 
     return render_template("addtodataset.html") 
   
@@ -44,11 +46,12 @@ def irregular():
        con = sqlite3.connect('FaceBase.db')
        print(Name)
        c =  con.cursor() 
-       cmd="INSERT INTO Irregular(Name,Phn,Visit,Purpose,Time) Values(?,?,?,?,datetime('now','localtime'));"
+       cmd="INSERT INTO Irregular(Name,Phn,Visit,Purpose,EntryTime) Values(?,?,?,?,datetime('now','localtime'));"
        con.execute(cmd,(Name,Phone,Visit,Purpose))
        con.commit()
        con.close() 
        irregular_dataset.irrdata()
+       return redirect(url_for('index'))
 
     return render_template("irregular.html") 
 

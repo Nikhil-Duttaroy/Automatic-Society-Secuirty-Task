@@ -11,7 +11,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css"
     />
-    <style>   
+    <style>
       @import url(https://fonts.googleapis.com/css?family=Comfortaa);
       @import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css);
 
@@ -20,14 +20,15 @@
         background: #353535;
         color: #fff;
       }
-       .navbar {
+      .navbar {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-end;
         align-items: center;
         margin: 0px 10px;
       }
       .navitems {
         list-style: none;
+        padding: 0px 1rem;
       }
 
       .navbar a {
@@ -35,27 +36,28 @@
       }
 
       input::-webkit-input-placeholder {
-    font-size: 1.23rem;
+        font-size: 1.23rem;
       }
     </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
   </head>
-
   <body>
-
-<nav>
+    <nav>
       <ul class="navbar">
         <li class="navitems">
-          <a class="navbtn" href="/"><h3>ASST</h3></a>
+          <a class="navbtn" href="/"> <h3><i class="fas fa-home"></i>Home</h3></a>
         </li>
         <li class="navitems">
-          <a class="navbtn" href="/adminlogin"> <h3>Admin</h3></a>
+          
+          <a class="navbtn" href="/admin"> <h3><i class="fas fa-users-cog fa-1x"></i>Admin Panel</h3></a>
         </li>
-        <li class="navitems">
-          <a class="navbtn" href="/"> <h3>Home</h3></a>
-        </li>
+        
       </ul>
     </nav>
-<div class="container mt-5 p-4" style="width: 50% ;border:2px #d24d57 solid ; border-radius: 15px;">
+    <div
+      class="container mt-5 p-4"
+      style="width: 50%; border: 2px #d24d57 solid; border-radius: 15px"
+    >
       <h1 class="text-center">Add User to Dataset</h1>
       <form action="#" method="POST">
         <div class="form-group">
@@ -69,7 +71,34 @@
             required
           />
         </div>
-        <div class="form-group">
+
+        <div class="dropdown">
+          <label for="Visitng To"><h4>Flat No:</h4></label> <br />
+          <select class="form-control" id="rating" name="Flat">
+            <option value="A-101">A-101</option>
+            <option value="A-102">A-102</option>
+            <option value="A-103">A-103</option>
+            <option value="A-201">A-201</option>
+            <option value="A-202">A-202</option>
+            <option value="A-203">A-203</option>
+
+            <option value="B-101">B-101</option>
+            <option value="B-102">B-102</option>
+            <option value="B-103">B-103</option>
+            <option value="B-201">B-201</option>
+            <option value="B-202">B-202</option>
+            <option value="B-203">B-203</option>
+
+            <option value="C-101">C-101</option>
+            <option value="C-102">C-102</option>
+            <option value="C-103">C-103</option>
+            <option value="C-201">C-201</option>
+            <option value="C-202">C-202</option>
+            <option value="C-203">C-203</option>
+          </select>
+        </div>
+
+        <!-- <div class="form-group">
           <label for="Flat"><h4>Flat</h4></label>
           <input
             type="text"
@@ -79,7 +108,8 @@
             name="Flat"
             required
           />
-        </div>
+        </div> -->
+        <br>
         <div class="form-check">
           <input
             class="form-check-input"
@@ -88,7 +118,11 @@
             id="flexRadioDefault1"
             value="Resident"
           />
-          <label style="font-size: 1.5rem;"class="form-check-label ml-5" for="flexRadioDefault1">
+          <label
+            style="font-size: 1.5rem"
+            class="form-check-label ml-5"
+            for="flexRadioDefault1"
+          >
             Resident
           </label>
         </div>
@@ -100,13 +134,19 @@
             id="flexRadioDefault1"
             value="Regular"
           />
-          <label style="font-size: 1.5rem;" class="form-check-label ml-5" for="flexRadioDefault2">
+          <label
+            style="font-size: 1.5rem"
+            class="form-check-label ml-5"
+            for="flexRadioDefault2"
+          >
             Regular
           </label>
         </div>
         <div class="text-center">
-        <button type="submit" class="btn btn-primary btn-lg mt-4">Submit</button>
-          </div>
+          <button type="submit" class="btn btn-primary btn-lg mt-4">
+            Submit
+          </button>
+        </div>
       </form>
     </div>
 

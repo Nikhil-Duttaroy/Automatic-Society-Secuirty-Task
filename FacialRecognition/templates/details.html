@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ASSt</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+
     <style>
       @import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css);
       @import url(https://fonts.googleapis.com/css?family=Comfortaa);
@@ -114,21 +116,22 @@
         -webkit-transform: translateX(-50%) translateY(-50%) rotate(25deg);
         transform: translateX(-50%) translateY(-50%) rotate(25deg);
       }
-      th{
+      th {
         font-size: 3rem;
       }
-      td{
+      td {
         font-size: 2rem;
         font-weight: 1000;
       }
       .navbar {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-end;
         align-items: center;
         margin: 0px 10px;
       }
       .navitems {
         list-style: none;
+        padding: 0px 1rem;
       }
 
       .navbar a {
@@ -138,7 +141,7 @@
         background-color: #e0dddd;
         color: black;
       }
-      
+
       .alert {
         background-color: red;
       }
@@ -149,32 +152,44 @@
         color: red;
       } */
     </style>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+    />
   </head>
   <body>
     <nav>
       <ul class="navbar">
         <li class="navitems">
-          <a class="navbtn" href="/"><h3>ASST</h3></a>
+          <a class="navbtn" href="/">
+            <h3><i class="fas fa-home"></i>Home</h3></a
+          >
         </li>
-        <!-- <li class="navitems">
-          <a class="navbtn" href="/adminlogin"> <h3>Admin</h3></a>
-        </li> -->
         <li class="navitems">
-          <a class="navbtn" href="/"> <h3>Home</h3></a>
+          <a class="navbtn" href="/admin">
+            <h3><i class="fas fa-users-cog fa-1x"></i>Admin Panel</h3></a
+          >
         </li>
       </ul>
     </nav>
     <div class="jumbotron text-center">
-      <div class="container" style="height: 50px;color: black;">
+      <div class="container" style="height: 50px; color: black">
         <h1>Residents / Regulars</h1>
         <!-- <button class="btn btn-secondary btn-lg"><a href="/admin">Admin</a></button> -->
       </div>
     </div>
     <div class="container">
       <div class="row text-center">
-        <table border="1" style="border-collapse: collapse; width: 100%;border-bottom:2px white;">
+        <table
+          border="1"
+          style="
+            border-collapse: collapse;
+            width: 100%;
+            border-bottom: 2px white;
+          "
+        >
           <tr>
-            <th style="text-align: center;"> ID</th>
+            <th style="text-align: center">ID</th>
             <th style="text-align: center">Name</th>
             <th style="text-align: center">Flat</th>
             <th style="text-align: center">Entry Time</th>
@@ -185,28 +200,118 @@
           <tr class="rows">
             <td>{{item[0]}}</td>
             <td>{{item[1]}}</td>
-            <td>{{item[2]}}</td>
-            <td>{{item[3]}}</td>
+            <td class="flat">{{item[2]}}</td>
+            <td class="time">{{item[3]}}</td>
             <td>{{item[4]}}</td>
             <td class="temp">{{item[5]}}</td>
           </tr>
           {% endfor %}
         </table>
       </div>
+      <canvas id="myChart" width="100%" height="50rem"></canvas>
     </div>
-    
   </body>
   <script>
     var temp = document.querySelectorAll(".temp");
+    console.log(temp);
+    console.log(temp.innerHTML);
     temp.forEach((data) => {
       if (data.innerHTML >= 100) {
         console.log(data);
         console.log(data.innerHTML);
-
         data.parentElement.classList.add("alert");
       }
     });
 
-    
+    flatArray = [];
+    let flats = document.querySelectorAll(".flat");
+    flats.forEach((flat) => {
+      fi = flat.innerHTML;
+      flatArray.push(fi);
+    });
+
+    tempArray = [];
+    let temps = document.querySelectorAll(".temp");
+    temps.forEach((temp) => {
+      ti = temp.innerHTML;
+      tempArray.push(ti);
+    });
+
+    timeArray = [];
+    let times = document.querySelectorAll(".time");
+    times.forEach((time) => {
+      tim = time.innerHTML;
+      console.log(tim.slice(14, 16));
+      if (tim.slice(14, 16) < 30) {
+        onlyTime = tim.slice(11, 13);
+        timeArray.push(onlyTime);
+      } else {
+        onlyTime = tim.slice(11, 13);
+        onlyTime = parseInt(onlyTime) + 1;
+        timeArray.push(onlyTime);
+      }
+    });
+
+    console.log("asfasf" + timeArray);
+
+    color = [];
+    flats.forEach((flat) => {
+      // var randomColor = Math.floor(Math.random()*16777215).toString(16);
+
+      const hue = Math.floor(Math.random() * 360);
+      var randomColor = `hsl(${hue},100%,80%)`;
+      color.push(randomColor);
+      console.log("coloe " + color);
+    });
+
+    var ctx = document.getElementById("myChart").getContext("2d");
+    console.log(flatArray);
+    var myChart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: flatArray, //flat details
+        datasets: [
+          {
+            label: "Temprature",
+            data: tempArray,
+            // backgroundColor:color,
+            borderColor: color,
+            borderWidth: 1,
+          },
+          {
+            label: "Time",
+            data: timeArray,
+            // backgroundColor:color,
+            borderColor: color,
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        legend: {
+          labels: {
+            // This more specific font property overrides the global property
+            fontColor: "White",
+          },
+        },
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                fontColor: "White",
+                beginAtZero: true,
+              },
+            },
+          ],
+          xAxes: [
+            {
+              ticks: {
+                fontColor: "White",
+              },
+            },
+          ],
+        },
+      },
+    });
   </script>
 </html>

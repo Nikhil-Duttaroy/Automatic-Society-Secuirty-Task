@@ -8,6 +8,9 @@ def reco():
     import irregular_dataset
     import app
 
+    
+   
+
     path = os.path.dirname(os.path.abspath(__file__))
     recognizer = cv2.face.LBPHFaceRecognizer_create()
     recognizer.read(path+r'\trainer\trainer.yml')
@@ -24,7 +27,7 @@ def reco():
         conn.close()
         return profile
 
-    def inserttime(id):
+    def inserttimetemp(id):
         conn=sqlite3.connect("FaceBase.db")
         cmd="Select * from Users WHERE ID="+str(id)
         cursor=conn.execute(cmd)
@@ -37,6 +40,30 @@ def reco():
             cmd="INSERT INTO Users(Time) Values(datetime('now','localtime'))"
         conn.execute(cmd)
         conn.commit()
+
+        # us = SMBus(1)
+        # sensor = MLX90614(bus, address=0x5A)
+        # celsius= sensor.get_object_1()
+        # fahrenheit = (celsius * 1.8) + 32
+
+        # print "Ambient Temperature :", sensor.get_ambient()
+        # print "Object Temperature :", fahrenheit
+        # bus.close()
+
+        # cmd="Select * from Users WHERE ID="+str(id)
+        # cursor=conn.execute(cmd)
+        # isRecordExist=0
+        # for row in cursor:
+        #     isRecordExist=1
+        # if(isRecordExist==1):
+        #     cmd="Update Users SET Temperature=(fahrenheit) WHERE ID="+str(id)
+        # else:
+        #     cmd="INSERT INTO Users(Temperature) Values(?);"
+        # conn.execute(cmd,(fahrenheit))
+        # conn.commit()
+
+
+
         conn.close()
 
     cam = cv2.VideoCapture(0)
@@ -59,17 +86,19 @@ def reco():
             profile=getProfile(id)
             if(profile!=None):
                 if (int(conf) < 67):
+
                     cv2.rectangle(im,(x,y),(x+w,y+h),(0,255,0),2)
                     conf = "  {0}%".format(round(100 - conf))
-                    cv2.putText(im, str(conf), (x,y+h), font,1, (0,255,0), 2)
+                    # cv2.putText(im, str(conf), (x,y+h), font,1, (0,255,0), 2)
                     cv2.putText(im,str(profile[1]), (x+2,y+h+30),font, 1, (0,255,0), 2)
                     cv2.putText(im,str(profile[4]), (x+2,y+h+60),font, 1, (0,255,0), 2)
-                    inserttime(id)
+                    inserttimetemp(id)
                 else:
                     id = "unknown"
                     # conf = "  {0}%".format(round(100 - conf))
+                    cv2.putText(im,str(id), (x,y+h),font, 1, (0,0,255), 2) 
                     cv2.rectangle(im,(x,y),(x+w,y+h),(0,0,255),2)
-                    cv2.putText(im,str(id), (x+2,y+h+30),font, 1, (0,0,255), 2) 
+                    
         cv2.imshow('im',im) 
 
         stop = cv2.waitKey(10) & 0xff # Press 'ESC' for exiting video

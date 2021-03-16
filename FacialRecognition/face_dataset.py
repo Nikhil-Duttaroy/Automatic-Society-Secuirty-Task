@@ -6,8 +6,8 @@ def data():
     import app
 
     cam = cv2.VideoCapture(0)
-    cam.set(3, 640) # set video width
-    cam.set(4, 480) # set video height
+    cam.set(3, 640) 
+    cam.set(4, 480) 
 
     face_detector = cv2.CascadeClassifier('FacialRecognition\haarcascade_frontalface_default.xml')
     def getid():
@@ -27,7 +27,7 @@ def data():
 
     getid()
 
-    # Initialize individual sampling face count
+    
     count = 0
 
     while(True):
