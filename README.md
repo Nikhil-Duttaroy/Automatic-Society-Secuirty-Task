@@ -7,7 +7,7 @@ This a Facial Recognition Software Developed for Housing Society security.
 3. Adding Images , Timestamp , Name ,Address , Phone Number of New Visitors.
 4. Representation of FlatNo With time and temperature in Table and Charts.
 
-###Prerequisites
+### Prerequisites
 1. Python 3.8.x
 2. OpenCv
 3. Flask
